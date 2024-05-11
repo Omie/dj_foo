@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_celery_beat',
     'django_celery_results',
+    'users',
     'books',
 ]
 
@@ -89,6 +90,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = "users.AppUser"
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
