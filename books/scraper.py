@@ -1,6 +1,7 @@
 import requests
 
 from bs4 import BeautifulSoup
+from celery import shared_task
 
 from .models import Book
 
@@ -38,8 +39,8 @@ def extract_data(book_data):
     return title, price
 
 
-def scrape_books(base_url):
-    # https://books.toscrape.com/
+@shared_task
+def scrape_books(base_url="https://books.toscrape.com/"):
     page = requests.get(base_url)
     parsed = BeautifulSoup(page.content, "html.parser")
     all_books = parsed.find_all("article", class_="product_pod")
